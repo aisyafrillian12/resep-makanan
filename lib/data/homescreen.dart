@@ -49,7 +49,7 @@ class home extends StatelessWidget {
                         Text('HTM : ${dataResep[index].htm}'),
                         ClipOval(
                           child: Material(
-                            color: Colors.blue, // button color 1
+                            color: Colors.blue, // button color
                             child: InkWell(
                               splashColor: Colors.red, // inkwell color
                               child: SizedBox(
