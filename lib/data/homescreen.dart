@@ -12,61 +12,103 @@ class home extends StatelessWidget {
         title: Text('Daftar Resep Makanan Khas Betawi'),
       ),
       body: ListView.builder(
-          itemCount: dataResep.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailScreen(
-                              reseps: dataResep[index],
-                            )));
-              },
-              child: Card(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.asset(
-                          dataResep[index].image,
-                          width: 150,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        ),
+        itemCount: dataResep.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              // Navigasi ke DetailScreen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailScreen(
+                    reseps: dataResep[index],
+                  ),
+                ),
+              );
+            },
+            child: Card(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.asset(
+                        dataResep[index].image,
+                        width: 150,
+                        height: 150,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(dataResep[index].name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: Colors.blueAccent)),
-                        Text('HTM : ${dataResep[index].htm}'),
-                        ClipOval(
-                          child: Material(
-                            color: Colors.blue, // button color
-                            child: InkWell(
-                              splashColor: Colors.red, // inkwell color
-                              child: SizedBox(
-                                  width: 30,
-                                  height: 30,
-                                  child: Icon(Icons.favorite)),
-                              onTap: () {},
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        dataResep[index].name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                          color: Colors.blueAccent,
+                        ),
+                      ),
+                      Text('HTM : ${dataResep[index].htm}'),
+                      ClipOval(
+                        child: Material(
+                          color: Colors.blue, // button color
+                          child: InkWell(
+                            splashColor: Colors.red, // inkwell color
+                            onTap: () {
+                              // Tampilkan alert dialog
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Tambahkan ke Favorit'),
+                                    content: Text(
+                                        'Apakah Anda ingin menambahkan resep ${dataResep[index].name} ke favorit?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Tidak'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Simpan resep ke favorit (implementasi Anda)
+                                          Navigator.pop(context);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                  'Resep ${dataResep[index].name} berhasil ditambahkan ke favorit!'),
+                                            ),
+                                          );
+                                        },
+                                        child: Text('Ya'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: Icon(Icons.favorite),
                             ),
                           ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

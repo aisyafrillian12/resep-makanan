@@ -50,7 +50,7 @@ class DetailScreen extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Colors.brown,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 8),
@@ -62,7 +62,7 @@ class DetailScreen extends StatelessWidget {
                         step,
                         style: TextStyle(
                           fontSize: 20,
-                          color: Colors.brown,
+                          color: Colors.black,
                         ),
                       ),
                     ),

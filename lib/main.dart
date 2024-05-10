@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_application_2/data/homescreen.dart';
-import 'package:flutter_application_2/data/dashboardscreen.dart';
+import 'package:flutter_application_2/data/homescreen.dart';
+// import 'package:flutter_application_2/data/dashboardscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.red,
       ),
-      home: Dashboard(),
+      home: const home(),
     );
   }
 }
